@@ -34,7 +34,7 @@ module Messaging
       return @file.path if @file
 
       @file = Tempfile.new('ca_certs')
-      @file.write(config.trusted_cert)
+      @file.write(trusted_cert)
       @file.close
 
       @file.path
