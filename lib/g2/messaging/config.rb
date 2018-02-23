@@ -28,5 +28,16 @@ module Messaging
     string :client_cert
     string :client_cert_key
     string :trusted_cert
+
+    def trusted_cert_file_path
+      return unless trusted_cert
+      return @file.path if @file
+
+      @file = Tempfile.new('ca_certs')
+      @file.write(config.trusted_cert)
+      @file.close
+
+      @file.path
+    end
   end
 end
