@@ -7,7 +7,9 @@ require 'g2/messaging/logger'
 module Messaging
   def self.config
     @config ||= Messaging::Config.new
-    yield @config if block_given?
-    @config
+  end
+
+  def self.configure
+    yield config
   end
 end

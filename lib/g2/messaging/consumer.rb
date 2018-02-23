@@ -2,6 +2,7 @@ module Messaging
   class Consumer
     class << self
       def pool
+        prepare_cleanup
         @pool ||= ConnectionPool.new(size: config.pool, timeout: 30) do
           kafka_client.consumer(group_id: "#{config.prefix}log-processor")
         end
@@ -26,15 +27,21 @@ module Messaging
         pool.shutdown { |consumer| consumer.stop }
       end
 
-      private
+      def prepare_cleanup
+        return if @cleanup_prepared
+        trap('QUIT') { Messaging::Consumer.shutdown }
+        trap('INT') { Messaging::Consumer.shutdown }
+        trap('TERM') { Messaging::Consumer.shutdown }
+        @cleanup_prepared = true
+      end
 
       def kafka_client
         Kafka.new(
           client_id: config.prefix + config.client_id,
-          ssl_ca_cert_file_path: config.ssl_ca_cert_file_path,
-          ssl_client_cert: config.ssl_client_cert,
-          ssl_client_cert_key: config.ssl_client_cert_key,
-          seed_brokers: config.seed_brokers,
+          ssl_ca_cert: config.trusted_cert,
+          ssl_client_cert: config.client_cert,
+          ssl_client_cert_key: config.client_cert_key,
+          seed_brokers: config.url,
           connect_timeout: 30,
           socket_timeout: 15,
           logger: Messaging::Logger.new(Rails.try(:logger))
