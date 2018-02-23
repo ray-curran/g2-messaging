@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    g2-messaging (0.1.0)
+      king_konf
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    king_konf (0.1.10)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  g2-messaging!
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.16.1
