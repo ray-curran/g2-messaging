@@ -1,7 +1,11 @@
 module Messaging
   module ActiveRecord
     def self.included(base)
+      return if @messaging_enabled
+
       base.after_commit :post_to_messaging
+
+      @messaging_enabled = true
     end
 
     def post_to_messaging
