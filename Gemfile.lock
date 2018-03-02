@@ -3,12 +3,17 @@ PATH
   specs:
     g2-messaging (0.1.0)
       king_konf
+      racecar (= 0.3.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
     king_konf (0.1.10)
+    racecar (0.3.7)
+      king_konf (~> 0.1.9)
+      ruby-kafka (~> 0.4)
     rake (10.5.0)
+    ruby-kafka (0.5.3)
 
 PLATFORMS
   ruby
