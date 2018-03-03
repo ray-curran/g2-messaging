@@ -31,7 +31,7 @@ module Messaging
     end
 
     def post_to_messaging_topic
-      'catalog_changes'
+      'catalog-changes'
     end
   end
 end
