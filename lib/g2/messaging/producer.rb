@@ -9,6 +9,7 @@ module Messaging
           kafka_client.async_producer(
             delivery_threshold: config.delivery_threshold,
             delivery_interval: config.delivery_interval,
+            compression_codec: config.compression_codec,
             max_queue_size: config.max_queue_size
           )
         end
@@ -17,7 +18,7 @@ module Messaging
       def sync_pool
         prepare_cleanup
         @sync_pool ||= ConnectionPool.new(size: config.pool, timeout: 5) do
-          kafka_client.producer
+          kafka_client.producer(compression_codec: config.compression_codec)
         end
       end
 

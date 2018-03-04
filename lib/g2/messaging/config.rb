@@ -25,6 +25,9 @@ module Messaging
     desc '# of messages that can be queued up by producer'
     integer :max_queue_size, default: 5000
 
+    desc 'Compression codec for producing messages'
+    string :compression_codec, default: :snappy
+
     string :client_cert
     string :client_cert_key
     string :trusted_cert
