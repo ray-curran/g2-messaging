@@ -26,7 +26,7 @@ module Messaging
     integer :max_queue_size, default: 5000
 
     desc 'Compression codec for producing messages'
-    string :compression_codec, default: :snappy
+    string :compression_codec, default: :gzip
 
     string :client_cert
     string :client_cert_key
