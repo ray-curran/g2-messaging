@@ -22,6 +22,9 @@ module Messaging
     desc 'Time throttle for async producers'
     integer :delivery_interval,  default: 5
 
+    desc 'Timeout for producer pool'
+    integer :delivery_timeout,  default: 15
+
     desc '# of messages that can be queued up by producer'
     integer :max_queue_size, default: 5000
 
