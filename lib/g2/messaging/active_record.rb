@@ -1,3 +1,5 @@
+require 'json'
+
 module Messaging
   module ActiveRecord
     def self.included(base)
