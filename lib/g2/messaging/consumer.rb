@@ -1,6 +1,15 @@
+require 'ruby-kafka'
+require 'connection_pool'
+
 module Messaging
   class Consumer
     class << self
+      def reset
+        shutdown
+        @pool = nil
+        @cleanup_prepared = false
+      end
+
       def pool
         prepare_cleanup
         @pool ||= ConnectionPool.new(size: config.pool, timeout: 30) do
@@ -29,10 +38,16 @@ module Messaging
 
       def prepare_cleanup
         return if @cleanup_prepared
-        trap('QUIT') { Messaging::Consumer.shutdown }
-        trap('INT') { Messaging::Consumer.shutdown }
-        trap('TERM') { Messaging::Consumer.shutdown }
+        if RUBY_ENGINE == 'ruby'
+          shut_your_trap('QUIT')
+          shut_your_trap('TERM')
+        end
+        shut_your_trap('INT')
         @cleanup_prepared = true
+      end
+
+      def shut_your_trap(signal)
+        trap(signal) { Messaging::Consumer.shutdown }
       end
 
       def kafka_client
@@ -44,7 +59,7 @@ module Messaging
           seed_brokers: config.url,
           connect_timeout: 30,
           socket_timeout: 15,
-          logger: Messaging::Logger.new(Rails.try(:logger))
+          logger: Messaging::Logger.new(config.logger)
         )
       end
     end

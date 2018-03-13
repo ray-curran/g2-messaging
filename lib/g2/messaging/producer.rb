@@ -10,7 +10,7 @@ module Messaging
         shutdown
         @async_pool = nil
         @sync_pool = nil
-
+        @cleanup_prepared = false
       end
 
       def async_pool
@@ -62,10 +62,16 @@ module Messaging
 
       def prepare_cleanup
         return if @cleanup_prepared
-        trap('QUIT') { Messaging::Producer.shutdown }
-        trap('INT') { Messaging::Producer.shutdown }
-        trap('TERM') { Messaging::Producer.shutdown }
+        if RUBY_ENGINE == 'ruby'
+          shut_your_trap('QUIT')
+          shut_your_trap('TERM')
+        end
+        shut_your_trap('INT')
         @cleanup_prepared = true
+      end
+
+      def shut_your_trap(signal)
+        trap(signal) { Messaging::Consumer.shutdown }
       end
 
       def kafka_client
