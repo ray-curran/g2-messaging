@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g2-messaging (0.1.1)
+    g2-messaging (0.1.2)
       connection_pool (= 2.2.1)
       king_konf
       racecar (= 0.3.7)

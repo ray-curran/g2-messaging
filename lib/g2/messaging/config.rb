@@ -49,7 +49,6 @@ module Messaging
 
     def logger
       return Rails.logger if defined? Rails.logger
-      @logger ||= Logger.new(STDOUT)
     end
   end
 end
