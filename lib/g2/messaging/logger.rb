@@ -2,7 +2,7 @@ module Messaging
   class Logger
     attr_reader :logger
 
-    def initialize(logger)
+    def initialize(logger = nil)
       @logger = logger || Messaging::Logger::Stub.new
     end
 
@@ -34,7 +34,7 @@ module Messaging
       def method_missing(name, message)
         super unless METHODS.find { |i| i == name }
 
-        puts "[kafka] #{message}"
+        puts message
       end
     end
   end
