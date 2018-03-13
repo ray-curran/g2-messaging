@@ -4,8 +4,12 @@ require 'g2/messaging/consumer'
 require 'g2/messaging/racecar_consumer'
 require 'g2/messaging/bad_data_error'
 require 'g2/messaging/producer'
+require 'g2/messaging/deliver'
 require 'g2/messaging/logger'
+require 'g2/messaging/messages'
+require 'g2/messaging/schema_loader'
 require 'g2/messaging/active_record'
+require 'g2/messaging/validation_error'
 
 module Messaging
   def self.config
@@ -14,6 +18,10 @@ module Messaging
 
   def self.configure
     yield config
+  end
+
+  def self.load_schema!
+    Messaging::SchemaLoader.new.load_all
   end
 
   def self.start_racecar!

@@ -1,0 +1,10 @@
+{
+  "title": "FakeModel",
+  "name": "fake_model",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" }
+  }
+}

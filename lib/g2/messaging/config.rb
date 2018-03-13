@@ -1,9 +1,11 @@
 require 'king_konf'
-require 'logger'
 
 module Messaging
   class Config < KingKonf::Config
     env_prefix :kafka
+
+    desc 'Location of json-schema files'
+    string :schema_path, default: File.join(File.dirname(__FILE__), '../../../schema')
 
     desc 'Comma separated list of kafka brokers'
     string :url, default: 'kafka:9092'
@@ -49,6 +51,7 @@ module Messaging
 
     def logger
       return Rails.logger if defined? Rails.logger
+      @logger ||= Messaging::Logger.new
     end
   end
 end
