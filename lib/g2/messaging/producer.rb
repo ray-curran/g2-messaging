@@ -1,7 +1,17 @@
+require 'connection_pool'
+require 'g2/messaging'
+
 module Messaging
   class Producer
     class << self
       attr_accessor :debug_mode
+
+      def reset
+        shutdown
+        @async_pool = nil
+        @sync_pool = nil
+
+      end
 
       def async_pool
         prepare_cleanup
@@ -65,7 +75,7 @@ module Messaging
           ssl_client_cert: config.client_cert,
           ssl_client_cert_key: config.client_cert_key,
           seed_brokers: config.url,
-          logger: Messaging::Logger.new(Rails.try(:logger))
+          logger: Messaging::Logger.new(config.logger)
         )
       end
     end

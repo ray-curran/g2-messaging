@@ -1,4 +1,5 @@
 require 'king_konf'
+require 'logger'
 
 module Messaging
   class Config < KingKonf::Config
@@ -44,6 +45,11 @@ module Messaging
       @file.close
 
       @file.path
+    end
+
+    def logger
+      return Rails.logger if defined? Rails.logger
+      @logger ||= Logger.new(STDOUT)
     end
   end
 end

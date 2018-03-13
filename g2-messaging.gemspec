@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "king_konf"
   spec.add_dependency "racecar", "0.3.7"
+  spec.add_dependency "connection_pool", "2.2.1"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.7"
