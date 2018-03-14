@@ -1,0 +1,8 @@
+{
+  "title": "TrollOrganization",
+  "name": "troll_organization",
+  "type": "object",
+  "properties": {
+    "remote_ip": { "type": "string" }
+  }
+}

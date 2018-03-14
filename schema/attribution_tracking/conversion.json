@@ -1,0 +1,10 @@
+{
+  "title": "Conversion",
+  "name": "conversion",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "integer" },
+    "product_id": { "type": "integer" }
+  }
+}
