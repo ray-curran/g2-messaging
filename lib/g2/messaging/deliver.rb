@@ -13,13 +13,13 @@ module Messaging
         Messaging::Producer.produce(wrapped(message).to_json, topic: topic, key: key)
       end
 
-      def validate(message)
+      def validate!(message)
         raise Messaging::ValidationError, message.errors unless message.valid?
       end
 
       def wrapped(message)
         {
-          schema_model: message.class.name.demodulize,
+          schema_model: message.class.name.underscore,
           model: message.class.name.demodulize,
           data: message.as_schema_hash
         }

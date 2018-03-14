@@ -18,7 +18,7 @@ describe Messaging::Logger do
     subject { Messaging::Logger.new(nil) }
 
     it 'should not fail' do
-      subject.info('undefined')
+      subject.info('testing logger')
     end
   end
 end
