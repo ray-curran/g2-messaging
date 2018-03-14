@@ -14,7 +14,7 @@ module Messaging
       end
 
       def validate!(message)
-        raise Messaging::ValidationError, message.errors unless message.valid?
+        raise Messaging::ValidationError, message.errors.full_messages.join("\n") unless message.valid?
       end
 
       def wrapped(message)
