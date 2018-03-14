@@ -9,7 +9,7 @@ describe Messaging::Config do
   end
 
   it 'schema path should default to gem directory' do
-    expect(Dir.glob(subject.schema_path + '/*.json')).to be_present
+    expect(Dir.glob(subject.schema_path + '/**/*.json')).to be_present
   end
 
   context 'when Rails' do

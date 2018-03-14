@@ -16,7 +16,7 @@
 require 'g2/messaging'
 require 'pry'
 RSpec.configure do |config|
-  SchemaTools.schema_path = './spec/fixtures/schema/models'
+  SchemaTools.schema_path = './spec/fixtures/schema'
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

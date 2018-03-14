@@ -27,7 +27,7 @@ module Messaging
     end
 
     def post_to_messaging_klass
-      @post_to_messaging_klass ||= "Messages::#{self.class.schema_name.classify}".constantize
+      @post_to_messaging_klass ||= "Messages::ChangedRecords::#{self.class.schema_name.classify}".constantize
     end
 
     def post_to_messaging_attributes
