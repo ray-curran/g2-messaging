@@ -13,15 +13,13 @@ module Messaging
     end
 
     def post_to_messaging
-      Messaging::Deliver.perform_later(
-        post_to_messaging_klass.new(post_to_messaging_attributes),
+      post_to_messaging_klass.new(post_to_messaging_attributes).deliver_later(
         topic: post_to_messaging_topic, key: post_to_messaging_key
       )
     end
 
     def post_to_messaging!
-      Messaging::Deliver.perform_now(
-        post_to_messaging_klass.new(post_to_messaging_attributes),
+      post_to_messaging_klass.new(post_to_messaging_attributes).deliver_now(
         topic: post_to_messaging_topic, key: post_to_messaging_key
       )
     end
