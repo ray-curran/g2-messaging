@@ -34,6 +34,9 @@ module Messaging
     desc 'Compression codec for producing messages'
     string :compression_codec, default: :gzip
 
+    desc 'Report errors to monitoring service'
+    string :error_reporter, default: lambda { |e| puts e }
+
     string :client_cert
     string :client_cert_key
     string :trusted_cert
