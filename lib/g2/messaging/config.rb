@@ -2,6 +2,7 @@ require 'king_konf'
 
 module Messaging
   class Config < KingKonf::Config
+    attr_writer :error_reporter
     env_prefix :kafka
 
     desc 'Location of json-schema files'
@@ -34,9 +35,6 @@ module Messaging
     desc 'Compression codec for producing messages'
     string :compression_codec, default: :gzip
 
-    desc 'Report errors to monitoring service'
-    string :error_reporter, default: lambda { |e| puts e }
-
     string :client_cert
     string :client_cert_key
     string :trusted_cert
@@ -55,6 +53,10 @@ module Messaging
     def logger
       return Rails.logger if defined? Rails.logger
       @logger ||= Messaging::Logger.new
+    end
+
+    def error_reporter
+      @error_reporter ||= lambda { |e| puts e }
     end
   end
 end
