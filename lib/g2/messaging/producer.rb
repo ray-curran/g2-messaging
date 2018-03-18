@@ -71,7 +71,7 @@ module Messaging
       end
 
       def shut_your_trap(signal)
-        trap(signal) { Messaging::Consumer.shutdown }
+        trap(signal) { Messaging::Producer.shutdown }
       end
 
       def kafka_client

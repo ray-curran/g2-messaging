@@ -32,6 +32,13 @@ module Messaging
         end
       end
 
+      def subscribe_forward(topic, &block)
+        with do |c|
+          c.subscribe("#{config.prefix}#{topic}", start_from_beginning: false)
+          c.each_message(max_wait_time: 5, min_bytes: 1024 * 1, &block)
+        end
+      end
+
       def shutdown
         pool.shutdown { |consumer| consumer.stop }
       end
