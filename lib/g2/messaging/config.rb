@@ -35,6 +35,12 @@ module Messaging
     desc 'Compression codec for producing messages'
     string :compression_codec, default: :gzip
 
+    desc 'Seconds to wait on connection'
+    integer :connection_timeout, default: 30
+
+    desc 'Seconds to wait on socket, this is a long runner'
+    integer :socket_timeout, default: 15
+
     string :client_cert
     string :client_cert_key
     string :trusted_cert

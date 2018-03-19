@@ -64,8 +64,8 @@ module Messaging
           ssl_client_cert: config.client_cert,
           ssl_client_cert_key: config.client_cert_key,
           seed_brokers: config.url,
-          connect_timeout: 30,
-          socket_timeout: 15,
+          connect_timeout: config.connection_timeout,
+          socket_timeout: config.socket_timeout,
           logger: Messaging::Logger.new(config.logger)
         )
       end

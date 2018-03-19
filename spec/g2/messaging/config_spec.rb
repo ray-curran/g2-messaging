@@ -12,6 +12,14 @@ describe Messaging::Config do
     expect(Dir.glob(subject.schema_path + '/**/*.json')).to be_present
   end
 
+  it 'should have default connection_timeout' do
+    expect(subject.connection_timeout).to eq 30
+  end
+
+  it 'should have default connection_timeout' do
+    expect(subject.socket_timeout).to eq 15
+  end
+
   context 'when Rails' do
     let(:rails) { double(logger: true) }
     before { stub_const('Rails', rails) }
