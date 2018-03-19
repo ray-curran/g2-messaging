@@ -37,6 +37,8 @@ module Messaging
       conf.ssl_client_cert = c.client_cert
       conf.ssl_client_cert_key = c.client_cert_key
       conf.ssl_ca_cert_file_path = c.trusted_cert_file_path
+      conf.connect_timeout = c.racecar_connect_timeout
+      conf.socket_timeout = c.racecar_socket_timeout
     end
   end
 end

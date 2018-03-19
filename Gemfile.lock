@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g2-messaging (0.3.2)
+    g2-messaging (0.3.3)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       connection_pool (= 2.2.1)

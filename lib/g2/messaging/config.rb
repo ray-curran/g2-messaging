@@ -41,6 +41,12 @@ module Messaging
     desc 'Seconds to wait on socket, this is a long runner'
     integer :socket_timeout, default: 15
 
+    desc 'Racecar seconds to wait on connection'
+    integer :racecar_connect_timeout, default: 10
+
+    desc 'Racecar seconds to wait on socket'
+    integer :racecar_socket_timeout, default: 30
+
     string :client_cert
     string :client_cert_key
     string :trusted_cert
