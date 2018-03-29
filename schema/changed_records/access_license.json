@@ -1,0 +1,10 @@
+{
+  "title": "AccessLicense",
+  "name": "access_license",
+  "type": "object",
+  "required": ["id", "product_id"],
+  "properties": {
+    "id": { "type": "integer" },
+    "product_id": { "type": "integer" }
+  }
+}

@@ -5,11 +5,11 @@ module Messaging
     include SchemaTools::Modules::AsSchema
 
     def self.included(base)
-      return if @messaging_enabled
+      return if base.instance_variable_get(:@messaging_enabled)
       base.after_commit :post_to_messaging
       base.extend(Messaging::ActiveRecord::ClassMethods)
 
-      @messaging_enabled = true
+      base.instance_variable_set(:@messaging_enabled, true)
     end
 
     def post_to_messaging
