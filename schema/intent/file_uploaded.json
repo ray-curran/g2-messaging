@@ -1,0 +1,11 @@
+{
+  "title": "FileUploaded",
+  "name": "file_uploaded",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "filename": { "type": "string" },
+    "email": { "type": "string" },
+    "path": { "type": "string" }
+  }
+}
