@@ -1,15 +1,14 @@
 require 'json'
+require 'active_support'
 
 module Messaging
   module ActiveRecord
     include SchemaTools::Modules::AsSchema
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      return if base.instance_variable_get(:@messaging_enabled)
-      base.after_commit :post_to_messaging
-      base.extend(Messaging::ActiveRecord::ClassMethods)
-
-      base.instance_variable_set(:@messaging_enabled, true)
+    included do
+      after_commit :post_to_messaging
+      extend(Messaging::ActiveRecord::ClassMethods)
     end
 
     def post_to_messaging
