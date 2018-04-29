@@ -20,19 +20,18 @@ module Messaging
     end
 
     def process(raw)
-      backend.perform_later(raw.value, raw.key)
-    rescue Encoding::UndefinedConversionError => e
-      puts raw.value
-      puts raw.value.encoding
-      Messaging.config.error_reporter.call(e)
+      backend.perform_later(encoded_value(raw.value), raw.key)
     rescue => e
       puts raw.value
       puts raw.key
       Messaging.config.error_reporter.call(e)
-      raise e
     end
 
     private
+
+    def encoded_value(value)
+      (value || '').force_encoding('utf-8')
+    end
 
     def backend
       self.class.backend
