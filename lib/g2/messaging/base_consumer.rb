@@ -6,7 +6,7 @@ module Messaging
       attr_accessor :backend
 
       def subscribes_to(*topics, start_from_beginning: true, max_bytes_per_partition: 1 * 1024 * 1024)
-        prefixed_topics = topics.map { |i| "#{config.prefix}#{i}" }
+        prefixed_topics = topics.map { |i| "#{Messaging.config.prefix}#{i}" }
         super *prefixed_topics, start_from_beginning: start_from_beginning, max_bytes_per_partition: max_bytes_per_partition
       end
 
@@ -24,15 +24,11 @@ module Messaging
     rescue => e
       puts raw.value
       puts raw.key
-      config.error_reporter.call(e)
+      Messaging.config.error_reporter.call(e)
       raise e
     end
 
     private
-
-    def config
-      Messaging.config
-    end
 
     def backend
       self.class.backend
