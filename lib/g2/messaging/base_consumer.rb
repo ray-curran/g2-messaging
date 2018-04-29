@@ -21,6 +21,10 @@ module Messaging
 
     def process(raw)
       backend.perform_later(raw.value, raw.key)
+    rescue Encoding::UndefinedConversionError => e
+      puts raw.value
+      puts raw.value.encoding
+      config.error_reporter.call(e)
     rescue => e
       puts raw.value
       puts raw.key
