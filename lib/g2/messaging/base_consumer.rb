@@ -24,7 +24,7 @@ module Messaging
     rescue Encoding::UndefinedConversionError => e
       puts raw.value
       puts raw.value.encoding
-      config.error_reporter.call(e)
+      Messaging.config.error_reporter.call(e)
     rescue => e
       puts raw.value
       puts raw.key
