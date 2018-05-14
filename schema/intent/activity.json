@@ -3,6 +3,7 @@
   "name": "activity",
   "type": "object",
   "properties": {
+    "time": "string",
     "events": { "type": "array", "items": { "type": "object" } }
   }
 }
