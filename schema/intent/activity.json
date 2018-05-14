@@ -1,0 +1,8 @@
+{
+  "title": "Activity",
+  "name": "activity",
+  "type": "object",
+  "properties": {
+    "events": { "type": "array", "items": { "type": "object" } }
+  }
+}
