@@ -1,0 +1,13 @@
+{
+  "title": "Event",
+  "name": "event",
+  "type": "object",
+  "properties": {
+    "id": "string",
+    "visit_token": "string",
+    "visitor_token": "string",
+    "time": "string",
+    "name": "string",
+    "properties": "object"
+  }
+}

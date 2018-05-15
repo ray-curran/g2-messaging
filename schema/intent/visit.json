@@ -1,0 +1,12 @@
+{
+  "title": "Visit",
+  "name": "visit",
+  "type": "object",
+  "properties": {
+    "visit_token": "string",
+    "visitor_token": "string",
+    "started_at": "string",
+    "created_at": "string",
+    "properties": "object"
+  }
+}
