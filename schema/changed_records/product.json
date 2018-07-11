@@ -7,6 +7,7 @@
     "id": { "type": "integer" },
     "name": { "type": "string" },
     "slug": { "type": "string" },
+    "uuid": { "type": "string" },
     "main_category_id": { "type": "integer" },
     "category_ids": { "type": "array", "items": { "type": "integer" } }
   }
