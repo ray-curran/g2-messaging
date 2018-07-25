@@ -1,0 +1,11 @@
+{
+  "title": "Validation",
+  "name": "validation",
+  "type": "object",
+  "required": ["id", "url"],
+  "properties": {
+    "id": { "type": "string" },
+    "url": { "type": "string" },
+    "properties": { "type": "object" }
+  }
+}
